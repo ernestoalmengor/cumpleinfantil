@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const fechaBoda = new Date("August 15, 2026 15:30:00").getTime(); 
+    const fechaBoda = new Date("July 15, 2026 15:00:00").getTime(); 
 
     const countdownEl = document.getElementById("countdown");
     function actualizarContador() {
@@ -8,10 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (distancia <= 0) {
             countdownEl.innerHTML = `
-                <div class="contador-item"><span>0</span><small>Días</small></div>
-                <div class="contador-item"><span>0</span><small>Horas</small></div>
-                <div class="contador-item"><span>0</span><small>Minutos</small></div>
-                <div class="contador-item"><span>0</span><small>Segundos</small></div>
+                <div class="contador-item" style="width: 100%;"><span style="font-size: 2rem;">¡Es hora de la fiesta!</span></div>
             `;
             return;
         }
@@ -23,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         countdownEl.innerHTML = `
             <div class="contador-item"><span>${dias}</span><small>Días</small></div>
-            <div class="contador-item"><span>${horas}</span><small>Horas</small></div>
-            <div class="contador-item"><span>${minutos}</span><small>Minutos</small></div>
-            <div class="contador-item"><span>${segundos}</span><small>Segundos</small></div>
+            <div class="contador-item"><span>${horas}</span><small>Hrs</small></div>
+            <div class="contador-item"><span>${minutos}</span><small>Min</small></div>
+            <div class="contador-item"><span>${segundos}</span><small>Seg</small></div>
         `;
     }
 
@@ -46,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function handleEntry() {
         body.classList.remove('no-scroll');
         overlay.classList.add("oculto");
-        setTimeout(() => (overlay.style.display = "none"), 550);
+        setTimeout(() => (overlay.style.display = "none"), 500);
 
         audio
             .play()
@@ -71,10 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
-
     // Intersection Observer for scroll animations
-    const revealElements = document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".fade-in");
     const revealOptions = {
         threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
@@ -92,13 +87,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Slider Logic
     const slides = document.querySelectorAll('.slide');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
     let currentSlide = 0;
 
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
+
     if (slides.length > 0) {
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
+        btnPrev.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        btnNext.addEventListener('click', () => {
             currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 3000);
+            showSlide(currentSlide);
+        });
+
+        // Auto slide
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 4000);
     }
 });
