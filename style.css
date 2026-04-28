@@ -139,7 +139,7 @@ body {
 .main-title {
     font-family: var(--font-heading);
     /* 👇 AQUÍ REDUCES EL TAMAÑO DE LA LETRA. Prueba con 2rem o 2.2rem si lo quieres más pequeño */
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     line-height: 1.2;
     margin-top: 20px;
     /* 👇 AQUÍ REDUJIMOS EL ESPACIO DEBAJO DEL TÍTULO (antes era 20px, ahora es 5px) */
@@ -243,20 +243,23 @@ body {
 .hero-countdown-modern {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 5px; /* Reducido para que quepan */
     z-index: 2;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Fuerza a estar en una sola línea */
+    width: 100%;
 }
 
 .count-box {
     background: var(--color-green-light);
     border: 1px solid rgba(105, 160, 96, 0.3);
     border-radius: 12px;
-    padding: 8px 10px;
+    padding: 6px 5px; /* Reducido para pantallas pequeñas */
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 60px;
+    min-width: 50px; /* Reducido para iPhone */
+    flex: 1; /* Permite que se distribuyan equitativamente */
+    max-width: 70px;
     box-shadow: 0 4px 6px rgba(105, 160, 96, 0.1);
 }
 
