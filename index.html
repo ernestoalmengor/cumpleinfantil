@@ -7,9 +7,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,180 +19,144 @@
     <div id="overlayEntrada" class="overlay">
         <div class="envelope-container" id="btnEntrar">
             <div class="envelope-image"></div>
-            <p class="click-text">Toca para abrir</p>
+            <p class="click-text pulse-text">¡Toca para abrir la invitación!</p>
         </div>
     </div>
 
-    <!-- main app -->
+    <!-- Main App Background -->
+    <div class="app-background">
+        <div class="floating-shapes"></div>
+    </div>
+
+    <!-- Main Content Wrapper -->
     <main class="app-container">
         
         <!-- === PORTADA (Hero) === -->
         <section class="screen-section hero-section fade-in">
-            <div class="hero-card">
+            <div class="ui-card hero-card relative-overflow">
                 <!-- Top bunting -->
-                <img src="public/bander.png" class="hero-bunting-top" alt="Banderines">
+                <img src="public/bander.png" class="decor-bunting top" alt="">
                 
                 <!-- Title Area -->
                 <div class="title-area">
-                    <img src="public/confeti.png" class="hero-popper" alt="Confeti">
-                    
-                    <svg viewBox="0 0 400 200" class="curved-title">
-                        <path id="curve1" d="M 120 60 Q 200 40 280 60" fill="transparent" />
-                        <text class="title-t-green"><textPath href="#curve1" startOffset="50%" text-anchor="middle">TE INVITO</textPath></text>
-                        
-                        <path id="curve2" d="M 60 110 Q 200 80 340 110" fill="transparent" />
-                        <text class="title-t-blue"><textPath href="#curve2" startOffset="50%" text-anchor="middle">A MI FIESTA DE</textPath></text>
-                        
-                        <path id="curve3" d="M 50 170 Q 200 120 350 170" fill="transparent" />
-                        <text class="title-t-green"><textPath href="#curve3" startOffset="50%" text-anchor="middle">CUMPLEAÑOS</textPath></text>
-                    </svg>
+                    <img src="public/confeti.png" class="decor-popper left float-slow" alt="">
+                    <h1 class="main-title multicolor-title" id="mainTitle">Te invito a mi fiesta de cumpleaños</h1>
+                    <img src="public/confeti.png" class="decor-popper right float-slow-delayed" alt="">
                 </div>
                 
                 <!-- Main Frog and Hats -->
                 <div class="hero-center float-anim">
-                    <img src="public/gorrito1.png" class="hero-hat left" alt="Gorrito Verde">
+                    <img src="public/gorrito1.png" class="hero-hat left" alt="">
                     <img src="public/rani.png" class="hero-frog" alt="Ranita">
-                    <img src="public/gorrito2.png" class="hero-hat right" alt="Gorrito Azul">
+                    <img src="public/gorrito2.png" class="hero-hat right" alt="">
                 </div>
 
-                <!-- Date Layout -->
-                <div class="hero-date-new">
-                    <div class="hd-month-new">JULIO</div>
-                    <div class="hd-middle-new">
-                        <div class="hd-side">
-                            <hr class="hd-line-new">
-                            <span class="hd-day-text-new">MIERCOLES</span>
-                            <hr class="hd-line-new">
-                        </div>
-                        <div class="hd-center-num">15</div>
-                        <div class="hd-side">
-                            <hr class="hd-line-new">
-                            <span class="hd-year-new">2026</span>
-                            <hr class="hd-line-new">
-                        </div>
-                    </div>
-                    <div class="hd-time-new">03:00 PM</div>
-                </div>
+                <!-- Date Text -->
+                <p class="hero-date-text" style="text-align: center; margin-top: -20px; margin-bottom: 25px; position: relative; z-index: 5;">
+                    Mis papis y yo te invitamos a celebrar mi 1er año, el día miercoles 15 de Julio del 2026 a las 03:00 pm
+                </p>
 
-                <!-- Contador -->
-                <div id="countdown" class="hero-countdown"></div>
-                
-                <!-- Bottom bunting -->
-                <img src="public/bander.png" class="hero-bunting-bottom" alt="Banderines">
+                <!-- Contador Moderno -->
+                <div id="countdown" class="hero-countdown-modern"></div>
             </div>
             <audio id="musicaFondo" src="public/audio.mp3" preload="auto" loop></audio>
         </section>
 
         <!-- === CALENDARIO Y EVENTO === -->
         <section class="screen-section calendar-section fade-in">
-            <div class="hero-card">
-                <!-- Title Area 2 -->
-                <div class="title-area-2">
-                    <img src="public/confeti.png" class="cal-popper left" alt="Confeti">
-                    <img src="public/confeti.png" class="cal-popper right" alt="Confeti">
+            <div class="ui-card split-layout">
+                <div class="split-left">
+                    <h2 class="section-title multicolor-title" data-text="Agenda este día">Agenda este día</h2>
                     
-                    <svg viewBox="0 0 400 150" class="curved-title-2">
-                        <path id="curve-cal-1" d="M 60 60 Q 200 30 340 60" fill="transparent" />
-                        <text class="title-t-green"><textPath href="#curve-cal-1" startOffset="50%" text-anchor="middle">AGENDA ESTE DIA</textPath></text>
-                        
-                        <path id="curve-cal-2" d="M 40 110 Q 200 70 360 110" fill="transparent" />
-                        <text class="title-t-blue"><textPath href="#curve-cal-2" startOffset="50%" text-anchor="middle">EN EL CALENDARIO</textPath></text>
-                    </svg>
-                </div>
-                
-                <div class="real-calendar">
-                    <div class="calendar-header">JULIO 2026</div>
-                    <div class="calendar-grid">
-                        <div class="day-name">D</div><div class="day-name">L</div><div class="day-name">M</div><div class="day-name">M</div><div class="day-name">J</div><div class="day-name">V</div><div class="day-name">S</div>
-                        <div class="day empty"></div><div class="day empty"></div><div class="day empty"></div>
-                        <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
-                        <div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
-                        <div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day highlighted">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
-                        <div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div>
-                        <div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
+                    <div class="modern-calendar">
+                        <div class="calendar-header">JULIO 2026</div>
+                        <div class="calendar-grid">
+                            <div class="day-name">D</div><div class="day-name">L</div><div class="day-name">M</div><div class="day-name">M</div><div class="day-name">J</div><div class="day-name">V</div><div class="day-name">S</div>
+                            <div class="day empty"></div><div class="day empty"></div><div class="day empty"></div>
+                            <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
+                            <div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
+                            <div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day highlighted pulse-ring">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
+                            <div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div>
+                            <div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Separator Bunting -->
-                <div class="cal-separator">
-                    <img src="public/bander.png" class="cal-bunting" alt="Banderines">
-                    <svg viewBox="0 0 400 80" class="curved-subtitle">
-                        <path id="curve-loc" d="M 50 50 Q 200 80 350 50" fill="transparent" />
-                        <text class="title-t-blue-small"><textPath href="#curve-loc" startOffset="50%" text-anchor="middle">¿DÓNDE ES LA FIESTA?</textPath></text>
-                    </svg>
-                </div>
-                
-                <div class="loc-card">
-                    <div class="time-header-orange">
-                        <i class="ph-bold ph-clock"></i> 04:30 PM
+                <div class="split-divider"></div>
+
+                <div class="split-right">
+                    <h2 class="section-title t-blue">¿Dónde es la fiesta?</h2>
+                    
+                    <div class="loc-card-modern">
+                        <div class="loc-icon-wrapper">
+                            <i class="ph-fill ph-map-pin"></i>
+                        </div>
+                        <h3 class="location-name">Finca El Principito</h3>
+                        <p class="location-address">H091, Zona 1, Guatemala</p>
+                        <a href="https://maps.app.goo.gl/TRTQvjcggYdNwv7YA" target="_blank" class="btn-modern-outline">
+                            <i class="ph-bold ph-map-trifold"></i> Ver Mapa
+                        </a>
                     </div>
-                    <p class="location-name">Finca El Principito</p>
-                    <p class="location-address">H091, Zona 1, Guatemala</p>
-                    <a href="https://maps.app.goo.gl/TRTQvjcggYdNwv7YA" target="_blank" class="btn-outline-dark">
-                        <i class="ph-bold ph-map-trifold"></i> Ver Mapa
-                    </a>
+                    <img src="public/gorrito2.png" class="decor-hat float-anim" alt="">
                 </div>
-                
-                <img src="public/gorrito2.png" class="cal-hat" alt="Gorrito">
             </div>
         </section>
 
-        <!-- === GALERÍA Y RSVP === -->
-        <section class="screen-section rsvp-section fade-in">
-            <div class="hero-card">
-                <!-- Title Area 3 -->
-                <div class="title-area-3">
-                    <img src="public/confeti.png" class="gal-popper right" alt="Confeti">
-                    
-                    <svg viewBox="0 0 400 120" class="curved-title-3">
-                        <path id="curve-gal-1" d="M 60 50 Q 200 20 340 50" fill="transparent" />
-                        <text class="title-t-blue"><textPath href="#curve-gal-1" startOffset="50%" text-anchor="middle">¡MIRA CUANTO</textPath></text>
-                        
-                        <path id="curve-gal-2" d="M 80 100 Q 200 60 320 100" fill="transparent" />
-                        <text class="title-t-green"><textPath href="#curve-gal-2" startOffset="50%" text-anchor="middle">HE CRECIDO!</textPath></text>
-                    </svg>
-                </div>
+        <!-- === GALERÍA === -->
+        <section class="screen-section gallery-section fade-in">
+            <div class="ui-card">
+                <h2 class="section-title multicolor-title" data-text="¡Mira cuánto he crecido!">¡Mira cuánto he crecido!</h2>
+                <p class="helper-text">Desliza para ver mis mejores momentos</p>
                 
-                <p class="helper-text-new">Desliza para ver mis mejores momentos</p>
-                
-                <!-- Gallery Slider -->
-                <div class="gallery-wrapper">
+                <!-- Gallery Slider Portrait -->
+                <div class="gallery-wrapper-modern">
                     <button class="gallery-arrow prev" id="btnPrev">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C0C0C0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <i class="ph-bold ph-caret-left"></i>
                     </button>
                     
-                    <div class="gallery-container">
-                        <img src="public/1.png" class="slide active photo-img" alt="Foto 1 del Cumpleañero">
-                        <img src="public/2.png" class="slide photo-img" alt="Foto 2 del Cumpleañero">
+                    <div class="gallery-frame portrait">
+                        <div class="photo-container active slide">
+                            <img src="public/1.png" class="photo-img" alt="Foto 1">
+                        </div>
+                        <div class="photo-container slide">
+                            <img src="public/2.png" class="photo-img" alt="Foto 2">
+                        </div>
+                        <!-- Placeholder if more images are added -->
                     </div>
                     
                     <button class="gallery-arrow next" id="btnNext">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C0C0C0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <i class="ph-bold ph-caret-right"></i>
                     </button>
-                </div>
-                
-                <!-- RSVP Title -->
-                <div class="title-area-rsvp">
-                    <svg viewBox="0 0 400 70" class="curved-title-rsvp">
-                        <path id="curve-rsvp" d="M 30 50 Q 200 20 370 50" fill="transparent" />
-                        <text class="title-t-green-small"><textPath href="#curve-rsvp" startOffset="50%" text-anchor="middle">CONFIRMA TU ASISTENCIA</textPath></text>
-                    </svg>
-                </div>
-                
-                <!-- RSVP Card -->
-                <div class="rsvp-card">
-                    <img src="public/bander.png" class="rsvp-bunting" alt="Banderines">
-                    <p class="rs-text-new">Por favor, confírmale a mis papás a su WhatsApp si podrás acompañarme en este gran día.</p>
-                    <a href="https://wa.me/1234567890" target="_blank" class="btn-whatsapp">
-                        <i class="ph-fill ph-whatsapp-logo"></i> Confirmar Asistencia
-                    </a>
                 </div>
             </div>
         </section>
 
+        <!-- === RSVP & FOOTER === -->
+        <section class="screen-section rsvp-section fade-in">
+            <div class="ui-card rsvp-card-modern">
+                <!-- <img src="public/bander.png" class="decor-bunting bottom" alt=""> -->
+                <h2 class="section-title t-green">Confirma tu asistencia</h2>
+                <p class="rs-text-modern">Por favor, confírmale a mis papás a su WhatsApp si podrás acompañarme en este gran día. ¡No faltes!</p>
+                
+                <a href="https://wa.me/1234567890?text=%C2%A1%C2%A1%C2%A1Agradezco%20la%20invitaci%C3%B3n%20y%20confirmo%20mi%20asistencia%20para%20celebrar%20el%20cumplea%C3%B1os%20de%20Alejandro!!!%20%F0%9F%8E%88%F0%9F%8E%89" target="_blank" class="btn-whatsapp-modern bounce-hover">
+                    <i class="ph-fill ph-whatsapp-logo"></i> Confirmar Asistencia
+                </a>
+            </div>
+        </section>
+
+        <!-- === BRAND FOOTER === -->
+        <footer class="brand-footer fade-in">
+            <div class="footer-content">
+                <p>© 2026 Todos los derechos reservados.</p>
+                <p class="developed-by">Desarrollado por <strong>Kevin Almengor</strong></p>
+            </div>
+        </footer>
+
     </main>
-    <!-- Botón Flotante Música -->
-    <button id="playerBtn" class="floating-player"><i class="ph-bold ph-play"></i></button>
+    
+    <!-- Botones Flotantes -->
+    <button id="scrollTopBtn" class="floating-scroll bounce-hover"><i class="ph-bold ph-arrow-up"></i></button>
+    <button id="playerBtn" class="floating-player bounce-hover"><i class="ph-bold ph-play"></i></button>
 
     <script src="script.js"></script>
 </body>
