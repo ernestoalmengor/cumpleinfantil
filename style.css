@@ -139,7 +139,7 @@ body {
 .main-title {
     font-family: var(--font-heading);
     /* 👇 AQUÍ REDUCES EL TAMAÑO DE LA LETRA. Prueba con 2rem o 2.2rem si lo quieres más pequeño */
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     line-height: 1.2;
     margin-top: 20px;
     /* 👇 AQUÍ REDUJIMOS EL ESPACIO DEBAJO DEL TÍTULO (antes era 20px, ahora es 5px) */
